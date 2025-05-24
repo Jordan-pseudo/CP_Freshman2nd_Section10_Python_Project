@@ -46,8 +46,8 @@ All of these features use beginner Python tools such as:
 
 ## Group Members
 
-1. Elnatan Bekele - UGR/4866/17
-2. Abel Girma - UGR/3068/17
-3. Sofonias Berhane - UGR/0767/17
-4. Reyan Tesfaye - UGR/4033/17
-5. Yordanos Tsegaye - UGR/0493/17
+1. Elnatan Bekele (username: elibeke) - UGR/4866/17
+2. Abel Girma (username: ab-e1) - UGR/3068/17
+3. Sofonias Berhane (username: sofib993) - UGR/0767/17
+4. Reyan Tesfaye (username: ReyanTk) - UGR/4033/17
+5. Yordanos Tsegaye (username: Jordan-pseudo) - UGR/0493/17
