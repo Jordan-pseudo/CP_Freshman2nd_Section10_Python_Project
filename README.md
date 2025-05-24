@@ -30,9 +30,18 @@ This project demonstrates our understanding of the basic Python concepts we've l
 ## Main Features
 
 1. Log Your Mood: Enter your daily mood on a scale from 1 to 5 by answering tailored questions.
-2. Receive Encouragement: Get a friendly or motivational message based on your mood
-3. View Mood History: See a list of all the moods you've entered so far (during the current session)
-4. Simple to Use - Clear and easy-to-understand user prompts
+2. Receive Encouragement: Get a friendly or motivational message based on your mood.
+3. View Mood History: See a list of all the moods you've entered so far (during the current session).
+4. Simple to Use - Clear and easy-to-understand user prompts.
+
+All of these features use beginner Python tools such as:
+- Variables
+- Lists and dictionaries
+- Strings and formatting
+- Functions
+- Conditionals
+- Loops
+- input() and print()
 
 
 ## Group Members
