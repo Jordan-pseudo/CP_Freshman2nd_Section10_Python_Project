@@ -8,7 +8,7 @@ This repository is a collaboration platform for AAiT 2nd Semester freshman stude
 
 **Daily Mood Logger with Encouragement Tracker** is a simple terminal-based Python program designed to help users track their daily moods and receive a kind or motivational message in return. 
 
-The program asks the user to enter their mood for the day (using a basic scale like 1–5) and allows them to add a short note. Based on their input, the program responds with a positive or supportive message. The mood entries are stored in a Python list or dictionary during the session, and users can view all the moods they’ve entered so far.
+The program asks the user to enter their mood for the day (using a basic scale like 1–5) by asking a set of questions and allows them to add a short note. Based on their input, the program responds with a positive or supportive message. The mood entries are stored in a Python list or dictionary during the session, and users can view all the moods they’ve entered so far.
 
 This project demonstrates our understanding of the basic Python concepts we've learned, including variables, functions, strings, lists, dictionaries, user input, and conditional statements.
 
@@ -29,7 +29,7 @@ This project demonstrates our understanding of the basic Python concepts we've l
 
 ## Main Features
 
-1. Log Your Mood: Enter your daily mood on a scale from 1 to 5.
+1. Log Your Mood: Enter your daily mood on a scale from 1 to 5 by answering tailored questions.
 2. Receive Encouragement: Get a friendly or motivational message based on your mood
 3. View Mood History: See a list of all the moods you've entered so far (during the current session)
 4. Simple to Use - Clear and easy-to-understand user prompts
