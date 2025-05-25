@@ -31,6 +31,11 @@ This project demonstrates our understanding of the basic Python concepts we've l
 2. Receive Encouragement: Get a friendly or motivational message based on your mood.
 3. View Mood History: See a list of all the moods you've entered so far (during the current session).
 4. Simple to Use - Clear and easy-to-understand user prompts.
+5. Track Days Logged – Keeps count of how many days/moods you’ve logged.
+6. Exit Option – Exit the program anytime with a simple menu choice.
+7. Mood Summary – See your average mood score during the session.
+8. Edit Entry – Update a previously logged mood or note.
+9. Reset History – Clear all entries if you want to start fresh. 
 
 All of these features use beginner Python tools such as:
 - Variables
@@ -40,6 +45,8 @@ All of these features use beginner Python tools such as:
 - Conditionals
 - Loops
 - input() and print()
+- Imorting database libraries
+- Linking a database to the main python file (A bit advanced but this adds a learning element to this project).
 
 
 ## Group Members
