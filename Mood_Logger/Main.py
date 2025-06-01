@@ -149,3 +149,38 @@ def get_entries_count():
     conn.close()
     return count
 
+def get_average_mood():
+    conn = sqlite3.connect("entries.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT AVG(mood_score) FROM mood_entries")
+    avg = cursor.fetchone()[0]
+    conn.close()
+    return avg
+
+def view_history():
+    conn = sqlite3.connect("entries.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, emotional_state, slept_well, active_today, note FROM mood_entries")
+    rows = cursor.fetchall()
+    conn.close()
+
+    if rows:
+        print("\n📚 Mood History:")
+        mood_map = {"a": "Happy", "b": "Okay", "c": "Tired", "d": "Stressed", "e": "Sad"}
+        for row in rows:
+            print("ID: {}, Mood: {}, Slept Well: {}, Active Today: {}, Note: {}".format(
+                row[0], mood_map.get(row[1], 'Unknown'), row[2], row[3], row[4]))
+    else:
+        print("\n📭 No mood entries found yet.\n")
+
+def reset_history():
+    confirm = input("\n⚠️ Are you sure you want to delete all entries? This cannot be undone. (yes/no): ").strip().lower()
+    if confirm == "yes":
+        conn = sqlite3.connect("entries.db")
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM mood_entries")
+        conn.commit()
+        conn.close()
+        print("🗑️ All entries have been deleted. History reset.\n")
+    else:
+        print("❌ Reset cancelled.\n")
