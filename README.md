@@ -17,13 +17,11 @@ This project demonstrates our understanding of the basic Python concepts we've l
 - Python 3 installed on your computer
 
 ### Instructions
-1. Clone or download the project from GitHub Example:
-    ```bash
-   git clone https://github.com/your-username/daily-mood-logger.git
-   cd daily-mood-logger
-2. Run the python file Example:
-    ```bash
-   python mood_logger.py
+1. Download the "Mood_Logger" folder from the repository.
+2. Open VS-Code or any python terminal environment and open the folder in that environment/platform.
+3. Run the main.py file.
+4. Follow the instructions to log in a new mood or view your mood history etc.
+5. Enjoy the program!
 
 ## Main Features
 
