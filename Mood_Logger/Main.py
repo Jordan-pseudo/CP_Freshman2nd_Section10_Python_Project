@@ -99,3 +99,53 @@ def save_entry(entry):
     conn.commit()
     conn.close()
     print("💾 Entry saved successfully!\n")
+
+def generate_encouragement(entry):
+    mood_map = {
+        "a": "Happy",
+        "b": "Okay",
+        "c": "Tired",
+        "d": "Stressed",
+        "e": "Sad"
+    }
+
+    encouragement_map = {
+        "a": "Keep enjoying your happiness and spread the joy!",
+        "b": "It's okay to have an okay day. Keep moving forward!",
+        "c": "Rest is important — take time to recharge, you deserve it!",
+        "d": "Remember to breathe and take things one step at a time. You've got this!",
+        "e": "It's okay to feel sad sometimes. Tomorrow is a new day with new possibilities."
+    }
+
+    check_in_message = "Thanks for checking in with yourself today. Remember, you're not alone."
+
+    mood = mood_map.get(entry["emotional_state"], "Unknown")
+    needs_encouragement = entry["needs_encouragement"]
+
+    print("\n💡 Here's your encouragement message:\n")
+
+    if needs_encouragement == "a":
+        message = encouragement_map.get(entry["emotional_state"],
+                                       "Keep taking care of yourself!")
+        print("Because you're feeling {}, {}".format(mood, message))
+
+        if entry["slept_well"] == "no":
+            print("- Try to get some restful sleep soon; it helps your mind and body heal.")
+
+        if entry["active_today"] == "no":
+            print("- A little physical activity, even a short walk, can boost your mood.")
+
+        if entry["note"]:
+            print("- Thanks for sharing: \"{}\". Remember, expressing yourself helps!".format(entry['note']))
+
+    else:
+        print(check_in_message)
+
+def get_entries_count():
+    conn = sqlite3.connect("entries.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM mood_entries")
+    count = cursor.fetchone()[0]
+    conn.close()
+    return count
+
