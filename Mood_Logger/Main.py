@@ -184,3 +184,109 @@ def reset_history():
         print("🗑️ All entries have been deleted. History reset.\n")
     else:
         print("❌ Reset cancelled.\n")
+
+def edit_entry():
+    conn = sqlite3.connect("entries.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, emotional_state, note FROM mood_entries")
+    rows = cursor.fetchall()
+
+    if not rows:
+        print("\n📭 No entries to edit.\n")
+        conn.close()
+        return
+
+    print("\n📝 Mood Entries:")
+    for row in rows:
+        print(f"ID: {row[0]}, Mood: {row[1]}, Note: {row[2]}")
+
+    try:
+        edit_id = int(input("\nEnter the ID of the entry you want to edit: ").strip())
+    except ValueError:
+        print("❌ Invalid input. Please enter a number.\n")
+        conn.close()
+        return
+
+    cursor.execute("SELECT * FROM mood_entries WHERE id=?", (edit_id,))
+    entry = cursor.fetchone()
+    if not entry:
+        print(f"❌ No entry found with ID {edit_id}.\n")
+        conn.close()
+        return
+
+    mood_score_map = {"a": 5, "b": 4, "c": 3, "d": 2, "e": 1}
+
+    print("\nLeave input blank to keep current value.\n")
+
+    new_mood = input(f"New emotional state (a-e) [current: {entry[1]}]: ").strip().lower()
+    if new_mood == "":
+        new_mood = entry[1]
+    if new_mood not in mood_score_map:
+        print("❌ Invalid mood input. Keeping current value.")
+        new_mood = entry[1]
+    new_score = mood_score_map.get(new_mood, 0)
+
+    new_slept = input(f"Did you sleep well? (yes/no) [current: {entry[3]}]: ").strip().lower()
+    if new_slept == "":
+        new_slept = entry[3]
+
+    new_active = input(f"Did you get physical activity? (yes/no) [current: {entry[4]}]: ").strip().lower()
+    if new_active == "":
+        new_active = entry[4]
+
+    new_note = input(f"Note [current: {entry[5]}]: ").strip()
+    if new_note == "":
+        new_note = entry[5]
+
+    new_encourage = input(f"Needs encouragement? (a=Encouragement, b=Check-in) [current: {entry[6]}]: ").strip().lower()
+    if new_encourage == "":
+        new_encourage = entry[6]
+    if new_encourage not in ["a", "b"]:
+        print("❌ Invalid encouragement input. Keeping current value.")
+        new_encourage = entry[6]
+
+    cursor.execute('''
+        UPDATE mood_entries
+        SET emotional_state=?, mood_score=?, slept_well=?, active_today=?, note=?, needs_encouragement=?
+        WHERE id=?
+    ''', (new_mood, new_score, new_slept, new_active, new_note, new_encourage, edit_id))
+
+    conn.commit()
+    conn.close()
+
+    print("✅ Entry updated successfully!\n")
+
+def main():
+    init_db()
+    show_welcome()
+    while True:
+        show_menu()
+        choice = input("Enter your choice (1-5): ").strip()
+        if choice == "1":
+            entry = ask_questions()
+            save_entry(entry)
+            generate_encouragement(entry)
+
+            count = get_entries_count()
+            avg = get_average_mood()
+
+            print("📅 Total days logged: {}".format(count))
+            if avg is not None:
+                print("📊 Your average mood score so far is: {:.2f} out of 5".format(avg))
+            else:
+                print("📊 No mood scores recorded yet.")
+            print("\nThank you for logging your mood today! Remember, every day is a new opportunity to feel better.\n")
+        elif choice == "2":
+            view_history()
+        elif choice == "3":
+            print("\n👋 Goodbye! Take care of yourself.\n")
+            break
+        elif choice == "4":
+            reset_history()
+        elif choice == "5":
+            edit_entry()
+        else:
+            print("❌ Invalid choice. Please try again.")
+
+main()
+
